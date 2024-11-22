@@ -54,11 +54,6 @@ cd ../..
 
  ```
 
-- Build the app:
-```shell 
-  npm run build
- ```
-
 - Run via capacitor
 **iOS**
  ```shell
