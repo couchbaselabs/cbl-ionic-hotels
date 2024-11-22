@@ -1,19 +1,19 @@
 PODS:
-  - Capacitor (5.7.5):
+  - Capacitor (6.2.0):
     - CapacitorCordova
-  - CapacitorApp (5.0.7):
+  - CapacitorApp (6.0.2):
     - Capacitor
-  - CapacitorCordova (5.7.5)
-  - CapacitorHaptics (5.0.7):
+  - CapacitorCordova (6.2.0)
+  - CapacitorHaptics (6.0.2):
     - Capacitor
-  - CapacitorKeyboard (5.0.8):
+  - CapacitorKeyboard (6.0.3):
     - Capacitor
-  - CapacitorStatusBar (5.0.7):
+  - CapacitorStatusBar (6.0.2):
     - Capacitor
-  - CblIonic (0.1.7):
+  - CblIonic (0.2.6):
     - Capacitor
-    - CouchbaseLite-Swift-Enterprise (~> 3.1)
-  - CouchbaseLite-Swift-Enterprise (3.1.7)
+    - CouchbaseLite-Swift-Enterprise (= 3.2.1)
+  - CouchbaseLite-Swift-Enterprise (3.2.1)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -22,7 +22,7 @@ DEPENDENCIES:
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
-  - CblIonic (from `../../../cbl-ionic`)
+  - CblIonic (from `../../node_modules/cbl-ionic`)
 
 SPEC REPOS:
   trunk:
@@ -42,18 +42,18 @@ EXTERNAL SOURCES:
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
   CblIonic:
-    :path: "../../../cbl-ionic"
+    :path: "../../node_modules/cbl-ionic"
 
 SPEC CHECKSUMS:
-  Capacitor: 7d42085cb786b2d3ea9ac8a17ebd7e3305be7b72
-  CapacitorApp: 17fecd0e6cb23feafac7eb0939417389038b0979
-  CapacitorCordova: c946a6052b547e1e185fc46862003f7b9130ead1
-  CapacitorHaptics: 7c7c206f0c96a628fed073830c96d28c4b2e772e
-  CapacitorKeyboard: aec619a578235c6ce279075009a2689c2cf5c42c
-  CapacitorStatusBar: f390fbb49b82ffb754ea4b3cf71dc8b048baf3e7
-  CblIonic: 79c531f1b8bfc82318a46c5f9b5437b446fd0e68
-  CouchbaseLite-Swift-Enterprise: 7fe8b730168a14ec96adcefb89a0109a4ee5b9f0
+  Capacitor: 1f3c7b9802d958cd8c4eb63895fff85dff2e1eea
+  CapacitorApp: 2a8c3a0b0814322e5e6e15fe595f02c3808f0f8b
+  CapacitorCordova: b33e7f4aa4ed105dd43283acdd940964374a87d9
+  CapacitorHaptics: b53409aaca1203f79c6d0eb3ed5de40556339518
+  CapacitorKeyboard: 460c6f9ec5e52c84f2742d5ce2e67bbc7ab0ebb0
+  CapacitorStatusBar: 3b9ac7d0684770522c532d1158a1434512ab1477
+  CblIonic: 7317a56723e1303313072ef2a6fdc902edec088f
+  CouchbaseLite-Swift-Enterprise: 6a1eddeed0b450d00d2336bcf60c9a71e228f0e4
 
-PODFILE CHECKSUM: 31ac4487ce84d98f5085e5bdbda5a1a5dc566fcb
+PODFILE CHECKSUM: e8048e272b811ac3e45b3bbf76581b41d861444d
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.16.2

@@ -108,6 +108,7 @@ const Tab1: React.FC = () => {
         </IonHeader>
         <IonSearchbar 
           placeholder="Search Name"
+          autocapitalize="off"
           onIonClear={() => setHotelsDisplayed(hotels)}
           onIonChange={doSearch} />
         <IonList lines="none">

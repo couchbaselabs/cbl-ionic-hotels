@@ -79,8 +79,6 @@ export class DatabaseService {
           doc.setString('phone', hotel.phone);
           doc.setString('type', this.DOC_TYPE_HOTEL);
 
-          //this.database.save(doc);   
-          //we save documents to collections now and this is an async operation
           await this.collection.save(doc);
         }
       }
@@ -98,12 +96,8 @@ export class DatabaseService {
 
     let hotelList: Hotel[] = [];
     for (let key in hotelResults) {
-      // Couchbase can query multiple databases at once, so "_" is just this single database.
-      // [ { "_": { id: "1", name: "Matt" } }, { "_": { id: "2", name: "Max" } }]
 
-      //using collection name now, so need to look for the documents using that
       let singleHotel = hotelResults[key]['_default'] as Hotel;
-      //let singleHotel = hotelResults[key]["_"] as Hotel;
 
       // Set bookmark status
       singleHotel.bookmarked = bookmarks.includes(singleHotel.id);
@@ -114,17 +108,13 @@ export class DatabaseService {
   }
 
   public async searchHotels(name: String): Promise<Hotel[]> {
-    //you can still use _ for the collection name it should default to
-    // _default._default, but it is better to be explicit
     const query = this.database.createQuery(
       `SELECT * FROM _ WHERE name LIKE '%${name}%' AND type = '${this.DOC_TYPE_HOTEL}' ORDER BY name`
     );
     const results = await query.execute();
-    //const results = await (await query.execute()).allResults(); - we don't need to double awaits in new framework
 
     let filteredHotels: Hotel[] = [];
     for (const key in results) {
-      //for (var key in results) {
       let singleHotel = results[key]["_"] as Hotel;
 
       filteredHotels.push(singleHotel);
@@ -137,10 +127,7 @@ export class DatabaseService {
     let hotelArray = this.bookmarkDocument.getArray('hotels') as number[];
     hotelArray.push(hotelId);
     this.bookmarkDocument.setArray('hotels', hotelArray);
-
-    //we use collections to save documents now
     await this.collection.save(this.bookmarkDocument);
-    //this.database.save(this.bookmarkDocument);
   }
 
   // Remove bookmarked hotel from bookmark document
@@ -150,19 +137,13 @@ export class DatabaseService {
     this.bookmarkDocument.setArray('hotels', hotelArray);
 
     await this.collection.save(this.bookmarkDocument);
-    //this.database.save(this.bookmarkDocument);
   }
 
   private async findOrCreateBookmarkDocument(): Promise<MutableDocument> {
-    // Meta().id is a GUID like e15d1aa2-9be3-4e02-92d8-82bd9d05d8e3
     const bookmarkQuery = this.database.createQuery(
       `SELECT META().id AS id FROM _default._default WHERE type = '${this.DOC_TYPE_BOOKMARKED_HOTELS}'`
     );
     const resultSet = await bookmarkQuery.execute();
-
-    // ** developers don't need to execute twice to get results
-    //const resultSet = await bookmarkQuery.execute();
-    //const resultList = await resultSet.allResults();
 
     let mutableDocument: MutableDocument;
     if (resultSet.length === 0) {
@@ -170,16 +151,13 @@ export class DatabaseService {
         .setString('type', this.DOC_TYPE_BOOKMARKED_HOTELS)
         .setArray('hotels', new Array());
       await this.collection.save(mutableDocument);
-      //this.database.save(mutableDocument);
     } else {
       const docId = resultSet[0]["id"];
 
       //we get documents directly from collections now
       const doc = await this.collection.document(docId);
-      //const doc = await this.database.getDocument(docId);
       mutableDocument = MutableDocument.fromDocument(doc);
     }
-
     return mutableDocument;
   }
 
@@ -188,9 +166,6 @@ export class DatabaseService {
     const query = this.database.createQuery(
       `SELECT * FROM _default._default WHERE type = '${this.DOC_TYPE_HOTEL}' ORDER BY name`
     );
-    //const query = this.database.createQuery(
-    //  `SELECT * FROM _ WHERE type = '${this.DOC_TYPE_HOTEL}' ORDER BY name`
-    //);
     return await query.execute();
   }
 }
